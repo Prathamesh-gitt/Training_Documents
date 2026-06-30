@@ -1,5 +1,3 @@
-
-
 #########################
 Day 14 - 22nd June 2026
 #########################
@@ -238,5 +236,151 @@ Next:::
 									
 
 
+
+#########################
+Day 17 - 29th June 2026
+#########################
+
+	
+	- Pipeline Project 		-- Based on the Scripts - groovy Scripts		
+							-- To Create CICD Pipelines and Onboard applications
+							
+		- Jenkins Pipelines:
+
+			- Scripted Pipelines:	
+			
+				- Typical Groovy Scripts 
+				
+			
+			- Declarative Pipelines:
+
+				- Snippet Generators 
+				
+					- Using input parameters the scripts can be generated.
+							
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello1') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('Hello2') {
+            steps {
+                echo 'Hello Everyone'
+            }
+        }
+    }
+}
+
+
+pipeline {
+    agent any
+
+    stages {
+        stage('SCM_Checkout') {
+            steps {
+                echo 'Perform SCM Checkout for Java Application'
+            }
+        }
+        stage('Application Build') {
+            steps {
+                echo 'Perform Java Application Build'
+            }
+        }
+        stage('Deploy to QA Server') {
+            steps {
+                echo 'Deploy to QA Server'
+            }
+        }
+    }
+}							
+							
+	CI/CD Workflow :::
+	
+		SCM_Checkout 
+		Application Build 
+		Unit Testing 
+		Create Artifacts
+		Promote the Application to Test Environments
+		Notify 
+		Deploy to Prod 	
+
+		
+							
+	- Create the Jenkins Master & Slave Node Configurations :::
+	
+	
+	Setup:
+	
+		- Jenkins Master:(VM)
+				==> To Create Jenkins CI/CD Pipeline Projects and schedule to the builds in the slave_nodes
+				==> Tools:
+						- git 
+						- jdk
+						- jenkins
+
+			- Jenkins Slave Node:(VM)
+				==> Perform Application Build for Java Maven Applications
+				==>	Tools:
+						- git 
+						- jdk
+						- Maven 
+						
+						
+		- Setup the SSH Connection:
+		
+			- On Slave Node - Create linux user, and ssh keys.
+			
+		- Login to Jenkins Console -> Setup the Jenkins Node Configurations.
+			
+Create Jenkins Pipeline:
+
+pipeline {
+    agent { label 'slave1' }
+    
+    environment {
+        JAVA_HOME = '/usr/lib/jvm/java-17-openjdk-amd64'
+        PATH = "${JAVA_HOME}/bin:${env.PATH}"
+    } 
+    
+    stages {
+        stage('SCM_Checkout') {
+            steps {
+                echo 'Perform SCM Checkout for Java Application'
+				git 'https://github.com/PL-DevOps-Cloud-2705/java-webapp-project.git'
+            }
+        }
+        stage('Application Build') {
+            steps {
+                echo 'Perform Java Application Build'
+				sh 'mvn clean package'
+            }
+        }
+        stage('Deploy to QA Server') {
+            steps {
+                echo 'Deploy to QA Server'
+            }
+        }
+    }
+}
+						
+	
+		
+Next: 
+
+	Setup the Target Tomcat Server :::
+	
+	- Web Application Server:
+	
+	- Tomcat WAS 
+	- Publish Over SSH Plugins to Deploy the Artifacts to Target Server.
+	- Create CICD Pipeline Projects to automate the Applications build  and deployments
+	- Onboard Applications to DevOps Practice
+	- Periodic Backup & Recovery
+	- Periodic Upgrade of Jenkins Services and Plugins 
+	- Troubleshoot any Jenkins related Issues
 
 
