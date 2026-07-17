@@ -435,3 +435,164 @@ Day 22 - 7th July 2026
 	
 	usermod -aG docker devopsadmin	
 		
+
+		
+#########################
+Day 23 - 9th July 2026
+#########################
+
+	Container Orchestration Tool :	
+	
+		- Docker Compose 
+		
+		- Docker Swarm 
+		
+		- Kubernetes
+		
+		
+	Containerization :::
+	
+		Deploy a Micro-Service : User_Sign_Up
+		
+			- 3-Tier Application Architecture :
+			
+				- Front-End Layer		# User Interface		C1 
+				
+				- Application Layer 	# Business Logic 		C2 
+				
+				- Backed Layer 			# Database 				C3		
+	
+		
+		
+		- Docker Compose ::: Used to execute Multiple Containers as a service.
+
+	- Docker Compose 
+	
+		- Is an extension/Plugin to Docker Engine.
+		- Is used to run multiple containers as a Service!
+		- Docker Compose uses the Yaml file to create the Service definitions
+		
+			Any Container that is part of a Service :
+		
+				should be in-sync with other container within the service 
+				
+				
+				Start/Stop all these container at the same time.
+		
+		
+		
+		Work with Docker Compose ::
+		
+			Install Docker_Compose
+			https://docs.docker.com/compose/
+			
+			https://docs.docker.com/compose/install/linux/		
+		
+		
+# Manual Installation of Docker Compose :::
+			
+DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
+mkdir -p $DOCKER_CONFIG/cli-plugins
+curl -SL https://github.com/docker/compose/releases/download/v2.24.0/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
+
+chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose	
+		
+
+docker compose version
+
+vi docker-compose.yaml
+
+
+
+### Yaml Files are based on Keys & Values -- key:value Pairs
+
+version: '3'
+services:
+  webserv1:
+    image: "tomcat:8.0"						# mywebapp_v1.0 ==> mywebapp_v2.0
+    ports:
+      - 8098:8080
+  dbserv1:
+    image: "redis:alpine"
+	
+docker compose up 							# Start the Service 
+
+docker compose down 						# Stop the Service 
+			
+			
+			
+	Deploy a Micro-Service : User_Sign_Up
+	
+		- 3-Tier Application Architecture :
+		
+			- Front-End Layer		# User Interface		C1.1,1.2,1.3 
+			
+			- Application Layer 	# Business Logic 		C2.1,2.2,2.3 
+			
+			- Backed Layer 			# Database 				C3.1,3.2,3.3
+			
+			
+docker compose up 
+
+
+	- Replication of Containers are not possible using Docker Compose.
+	
+	
+Environments:
+
+	Dev 
+	
+	Build 
+	
+	QA 
+	
+	UAT  				=========>			Prod Server1,2,3,4,5
+	
+											C1.1,1.2,1.3 
+											
+												mywebapp_v2.0
+
+Container Orchestration Tools :
+
+	- Docker Swarm ::::
+	
+		- Docker Swarm is one the Container Orchestration Tools.
+		- It is meant only for Docker Containers.
+		- Used to Ensure High Availability of Containers by creating Replicas of Containers.
+		
+		- We cannot do Auto-Scaling or Load Balancing!		
+
+
+	App Service:
+	
+		3 replicas of Containers ==> 
+		
+		
+	- Kubernetes :::
+		
+			- It is an Open-Source Container Orchestration Tool 
+			- Kubernetes is used to Deploy any type of Containers.
+			- It is used to ensure high availability of the Applications/services running thru Containers.
+			- Used to Ensure High Availability of Containers by creating Replicas of Containers/Pods.
+			- It supports Auto-Scaling & Load Balancing.	
+			- Supports self-healing.
+			
+			- Used to deploy the Micro-Service Based Applications 
+			
+		Continuous Deployment ::
+		
+			- It is the process to release the changes to production environment, without any manual intervension/Approvals..
+			- During the process of application upgrade or downgrade, there is no downtime
+			- Zero Downtime can be achieved only with the Micro-Service based Application Architecture.
+			- Is the matured level of DevOps. 
+			
+			
+	- Managed Kubernetes Services :
+	
+	
+		AWS 	: EKS 
+		
+		Azure 	: AKS 
+		
+		GCP 	: GCE
+		

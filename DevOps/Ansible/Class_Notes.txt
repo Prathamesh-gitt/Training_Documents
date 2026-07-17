@@ -1,0 +1,47 @@
+#########################
+Day 27 - 16th July 2026
+#########################
+
+
+	- IAC Tools 
+	
+	- Configuration Management :::
+	
+		Ansible 
+		
+		Infra-Structure Management:
+		
+			- IAC - Infra-Structure As Code - Tools
+		
+			Infra-Structure Provisioning/Creating 	::: Terraform/CloudFormation/ARM
+			
+			Infra-Structure Configurations 			::: Ansible/Chef/Puppet
+			
+	
+	- Configuration Management using Ansible :::
+	
+		- Why Ansible?
+		
+		- Ansible Architecture & Components 
+		
+		- Installation and Configurations of Ansible Architecture
+		
+		- Core concepts :
+		
+			- Ansible Adhoc Commands 
+			
+			- Ansible Playbooks 
+			
+			- Ansible Playbook Variables
+			
+			- Handlers 
+			
+			- Loops 
+			
+			- Conditional Executions 
+			
+			- Ansible Roles 
+			
+			- Ansible Galaxy 
+			
+			
